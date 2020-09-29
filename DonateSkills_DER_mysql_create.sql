@@ -21,18 +21,20 @@ CREATE TABLE `usuario` (
 	`email` varchar(70) NOT NULL,
 	`senha` varchar(70) NOT NULL,
 	`pontuacao` INT NOT NULL,
+	`curso_estudado` TEXT NOT NULL,
+	`curso_monitorado` TEXT NOT NULL,
 	`fk_id_tipo_usuario` TEXT NOT NULL,
+	`curso_criado` TEXT NOT NULL,
 	PRIMARY KEY (`id_usuario`)
-);
-
-CREATE TABLE `tipo_usuario` (
-	`id_tipo_usuario` INT NOT NULL AUTO_INCREMENT,
-	`usuario` varchar(70) NOT NULL,
-	`permissao` varchar(70) NOT NULL,
-	PRIMARY KEY (`id_tipo_usuario`)
 );
 
 ALTER TABLE `produto` ADD CONSTRAINT `produto_fk0` FOREIGN KEY (`fk_id_categoria`) REFERENCES `categoria`(`id_categoria`);
 
-ALTER TABLE `usuario` ADD CONSTRAINT `usuario_fk0` FOREIGN KEY (`fk_id_tipo_usuario`) REFERENCES `tipo_usuario`(`id_tipo_usuario`);
+ALTER TABLE `usuario` ADD CONSTRAINT `usuario_fk0` FOREIGN KEY (`curso_estudado`) REFERENCES `produto`(`id_produto`);
+
+ALTER TABLE `usuario` ADD CONSTRAINT `usuario_fk1` FOREIGN KEY (`curso_monitorado`) REFERENCES `produto`(`id_produto`);
+
+ALTER TABLE `usuario` ADD CONSTRAINT `usuario_fk2` FOREIGN KEY (`fk_id_tipo_usuario`) REFERENCES `tipo_usuario`(`id_tipo_usuario`);
+
+ALTER TABLE `usuario` ADD CONSTRAINT `usuario_fk3` FOREIGN KEY (`curso_criado`) REFERENCES `produto`(`id_produto`);
 
