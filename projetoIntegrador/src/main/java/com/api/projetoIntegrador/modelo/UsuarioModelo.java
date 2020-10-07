@@ -39,7 +39,9 @@ public class UsuarioModelo implements Serializable {
 
 	@Column
 	private Integer curso_criado;
-
+	
+	
+	
 	public Long getId_usuario() {
 		return id_usuario;
 	}

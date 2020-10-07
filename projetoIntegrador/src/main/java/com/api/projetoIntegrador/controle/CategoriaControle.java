@@ -20,34 +20,34 @@ import com.api.projetoIntegrador.modelo.CategoriaModelo;
 import com.api.projetoIntegrador.repositorio.CategoriaRepositorio;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/categoria")
 public class CategoriaControle {
 
 	@Autowired
 	private CategoriaRepositorio repositoryCategoria;
 
-	@GetMapping("/categorias")
+	@GetMapping
 	public @ResponseBody List<CategoriaModelo> findCategory() {
 		return repositoryCategoria.findAll();
 	}
 
-	@GetMapping("/categoria/{id}")
+	@GetMapping("/{id}")
 	public @ResponseBody Optional<CategoriaModelo> getByCategory(@PathVariable Long id) {
 		return repositoryCategoria.findById(id);
 	}
 
-	@PostMapping("/categorias")
+	@PostMapping
 	public @ResponseBody CategoriaModelo insertCategory(@RequestBody CategoriaModelo categoria) {
 		return repositoryCategoria.save(categoria);
 	}
 
-	@PutMapping("/categorias/{id}")
+	@PutMapping("/id/{id}")
 	public ResponseEntity<CategoriaModelo> updateCategory(@PathVariable Long id,
 			@RequestBody CategoriaModelo categoria) {
 		return ResponseEntity.status(HttpStatus.OK).body(repositoryCategoria.save(categoria));
 	}
 	
-	@DeleteMapping("/categorias/id/{id}")
+	@DeleteMapping("/{id}")
 	public void deleteCategory(@PathVariable Long id) {
 		repositoryCategoria.deleteById(id);
 	}

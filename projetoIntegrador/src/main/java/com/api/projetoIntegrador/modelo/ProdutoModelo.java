@@ -1,13 +1,17 @@
 package com.api.projetoIntegrador.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "produto")
@@ -17,16 +21,20 @@ public class ProdutoModelo implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_produto;
-	@Column
+	
 	private String nome_curso;
-	@Column
+
 	private String descricao;
-	@Column
+
 	private Long custo_monitoria;
-	@Column
+
 	private Long ganho_aula;
-	@Column
+
 	private Long ganho_prova;
+	
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("produto")
+	private List<CategoriaModelo> categoria;
 
 	public Long getId_produto() {
 		return id_produto;
@@ -74,6 +82,14 @@ public class ProdutoModelo implements Serializable {
 
 	public void setGanho_prova(Long ganho_prova) {
 		this.ganho_prova = ganho_prova;
+	}
+
+	public List<CategoriaModelo> getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(List<CategoriaModelo> categoria) {
+		this.categoria = categoria;
 	}
 
 	@Override

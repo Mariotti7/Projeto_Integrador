@@ -20,33 +20,33 @@ import com.api.projetoIntegrador.modelo.UsuarioModelo;
 import com.api.projetoIntegrador.repositorio.UsuarioRepositorio;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/usuarios")
 public class UsuarioControle {
 
 	@Autowired
 	private UsuarioRepositorio repositoryUsuario;
 
-	@GetMapping("/usuarios")
+	@GetMapping
 	public @ResponseBody List<UsuarioModelo> findUsers() {
 		return repositoryUsuario.findAll();
 	}
 
-	@GetMapping("/usuario/{id}")
+	@GetMapping("/{id}")
 	public @ResponseBody Optional<UsuarioModelo> getByUser(@PathVariable Long id) {
 		return repositoryUsuario.findById(id);
 	}
 
-	@PostMapping("/usuarios")
+	@PostMapping
 	public @ResponseBody UsuarioModelo insertUser(@RequestBody UsuarioModelo usuario) {
 		return repositoryUsuario.save(usuario);
 	}
 
-	@PutMapping("/usuarios/{id}")
+	@PutMapping("/id/{id}")
 	public ResponseEntity<UsuarioModelo> updateUser(@PathVariable Long id, @RequestBody UsuarioModelo usuario) {
 		return ResponseEntity.status(HttpStatus.OK).body(repositoryUsuario.save(usuario));
 	}
 
-	@DeleteMapping("/usuarios/id/{id}")
+	@DeleteMapping("/{id}")
 	public void deleteUser(@PathVariable Long id) {
 		repositoryUsuario.deleteById(id);
 	}

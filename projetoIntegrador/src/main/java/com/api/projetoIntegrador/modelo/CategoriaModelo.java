@@ -7,7 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "categoria")
@@ -21,6 +24,10 @@ public class CategoriaModelo implements Serializable {
 
 	@Column(name = "tipo_curso")
 	private String tipo_curso;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("categoria")
+	private ProdutoModelo produto;
 
 	public long getId_categoria() {
 		return id_categoria;
@@ -36,6 +43,14 @@ public class CategoriaModelo implements Serializable {
 
 	public void setTipo_curso(String tipo_curso) {
 		this.tipo_curso = tipo_curso;
+	}
+
+	public ProdutoModelo getProduto() {
+		return produto;
+	}
+
+	public void setProduto(ProdutoModelo produto) {
+		this.produto = produto;
 	}
 
 	@Override

@@ -20,33 +20,33 @@ import com.api.projetoIntegrador.modelo.ProdutoModelo;
 import com.api.projetoIntegrador.repositorio.ProdutoRepositorio;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/produtos")
 public class ProdutoControle {
 
 	@Autowired
 	private ProdutoRepositorio repositoryProduto;
 	
-	@GetMapping("/produtos")
+	@GetMapping
 	public @ResponseBody List<ProdutoModelo> findProduct(){
 		return repositoryProduto.findAll();
 	}
 	
-	@GetMapping("/produto/{id}")
+	@GetMapping("/{id}")
 	public @ResponseBody Optional<ProdutoModelo> getByProduct(@PathVariable Long id){
 		return repositoryProduto.findById(id);
 	}
 	
-	@PostMapping("/produtos")
+	@PostMapping
 	public @ResponseBody ProdutoModelo insertProduct(@RequestBody ProdutoModelo produto){
 		return repositoryProduto.save(produto);
 	}
 	
-	@PutMapping("/produtos/{id}")
+	@PutMapping("/id/{id}")
 	public ResponseEntity<ProdutoModelo> updateProduct(@PathVariable Long id, @RequestBody ProdutoModelo produto){
 		return ResponseEntity.status(HttpStatus.OK).body(repositoryProduto.save(produto));
 	}
 	
-	@DeleteMapping("/produtos/id/{id}")
+	@DeleteMapping("/{id}")
 	public void deleteProduct(@PathVariable Long id) {
 		repositoryProduto.deleteById(id);
 	}
