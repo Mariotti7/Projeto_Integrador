@@ -2,7 +2,6 @@ package com.api.projetoIntegrador.modelo;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,32 +15,16 @@ public class UsuarioModelo implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
 	private Long id_usuario;
 
-	@Column
 	private String nome;
 
-	@Column
 	private String email;
 
-	@Column
 	private String senha;
 
-	@Column
 	private Long pontuacao;
 
-	@Column
-	private Integer curso_estudado;
-
-	@Column
-	private Integer curso_monitorado;
-
-	@Column
-	private Integer curso_criado;
-	
-	
-	
 	public Long getId_usuario() {
 		return id_usuario;
 	}
@@ -80,30 +63,6 @@ public class UsuarioModelo implements Serializable {
 
 	public void setPontuacao(Long pontuacao) {
 		this.pontuacao = pontuacao;
-	}
-
-	public Integer getCurso_estudado() {
-		return curso_estudado;
-	}
-
-	public void setCurso_estudado(Integer curso_estudado) {
-		this.curso_estudado = curso_estudado;
-	}
-
-	public Integer getCurso_monitorado() {
-		return curso_monitorado;
-	}
-
-	public void setCurso_monitorado(Integer curso_monitorado) {
-		this.curso_monitorado = curso_monitorado;
-	}
-
-	public Integer getCurso_criado() {
-		return curso_criado;
-	}
-
-	public void setCurso_criado(Integer curso_criado) {
-		this.curso_criado = curso_criado;
 	}
 
 	public static long getSerialversionuid() {

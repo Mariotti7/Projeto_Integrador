@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.projetoIntegrador.modelo.CategoriaModelo;
@@ -27,26 +26,27 @@ public class CategoriaControle {
 	private CategoriaRepositorio repositoryCategoria;
 
 	@GetMapping
-	public @ResponseBody List<CategoriaModelo> findCategory() {
-		return repositoryCategoria.findAll();
+	public ResponseEntity<List<CategoriaModelo>> findCategory() {
+		return ResponseEntity.ok(repositoryCategoria.findAll());
 	}
 
-	@GetMapping("/{id}")
-	public @ResponseBody Optional<CategoriaModelo> getByCategory(@PathVariable Long id) {
-		return repositoryCategoria.findById(id);
+	@GetMapping("/id/{id}")
+	public ResponseEntity<Optional<CategoriaModelo>> getByCategory(@PathVariable Long id) {
+		return ResponseEntity.ok(repositoryCategoria.findById(id));
 	}
 
 	@PostMapping
-	public @ResponseBody CategoriaModelo insertCategory(@RequestBody CategoriaModelo categoria) {
-		return repositoryCategoria.save(categoria);
+	public ResponseEntity<CategoriaModelo> insertCategory(@RequestBody CategoriaModelo categoria) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(repositoryCategoria.save(categoria));
 	}
 
-	@PutMapping("/id/{id}")
+	@PutMapping
 	public ResponseEntity<CategoriaModelo> updateCategory(@PathVariable Long id,
 			@RequestBody CategoriaModelo categoria) {
+		categoria.setId_categoria(id);
 		return ResponseEntity.status(HttpStatus.OK).body(repositoryCategoria.save(categoria));
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public void deleteCategory(@PathVariable Long id) {
 		repositoryCategoria.deleteById(id);

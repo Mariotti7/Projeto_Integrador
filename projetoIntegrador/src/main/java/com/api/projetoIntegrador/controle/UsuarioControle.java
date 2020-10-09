@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.projetoIntegrador.modelo.UsuarioModelo;
@@ -27,22 +26,23 @@ public class UsuarioControle {
 	private UsuarioRepositorio repositoryUsuario;
 
 	@GetMapping
-	public @ResponseBody List<UsuarioModelo> findUsers() {
-		return repositoryUsuario.findAll();
+	public ResponseEntity<List<UsuarioModelo>> findUsers() {
+		return ResponseEntity.ok(repositoryUsuario.findAll());
 	}
 
-	@GetMapping("/{id}")
-	public @ResponseBody Optional<UsuarioModelo> getByUser(@PathVariable Long id) {
-		return repositoryUsuario.findById(id);
+	@GetMapping("/id/{id}")
+	public ResponseEntity<Optional<UsuarioModelo>> getByUser(@PathVariable Long id) {
+		return ResponseEntity.ok(repositoryUsuario.findById(id));
 	}
 
 	@PostMapping
-	public @ResponseBody UsuarioModelo insertUser(@RequestBody UsuarioModelo usuario) {
-		return repositoryUsuario.save(usuario);
+	public ResponseEntity<UsuarioModelo> insertUser(@RequestBody UsuarioModelo usuario) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(repositoryUsuario.save(usuario));
 	}
 
-	@PutMapping("/id/{id}")
+	@PutMapping
 	public ResponseEntity<UsuarioModelo> updateUser(@PathVariable Long id, @RequestBody UsuarioModelo usuario) {
+		usuario.setId_usuario(id);
 		return ResponseEntity.status(HttpStatus.OK).body(repositoryUsuario.save(usuario));
 	}
 

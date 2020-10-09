@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.projetoIntegrador.modelo.ProdutoModelo;
@@ -27,22 +26,23 @@ public class ProdutoControle {
 	private ProdutoRepositorio repositoryProduto;
 	
 	@GetMapping
-	public @ResponseBody List<ProdutoModelo> findProduct(){
-		return repositoryProduto.findAll();
+	public ResponseEntity<List<ProdutoModelo>> findProduct(){
+		return ResponseEntity.ok(repositoryProduto.findAll());
 	}
 	
-	@GetMapping("/{id}")
-	public @ResponseBody Optional<ProdutoModelo> getByProduct(@PathVariable Long id){
-		return repositoryProduto.findById(id);
+	@GetMapping("/id/{id}")
+	public ResponseEntity<Optional<ProdutoModelo>> getByProduct(@PathVariable Long id){
+		return ResponseEntity.ok(repositoryProduto.findById(id));
 	}
 	
 	@PostMapping
-	public @ResponseBody ProdutoModelo insertProduct(@RequestBody ProdutoModelo produto){
-		return repositoryProduto.save(produto);
+	public ResponseEntity<ProdutoModelo> insertProduct(@RequestBody ProdutoModelo produto){
+		return ResponseEntity.status(HttpStatus.CREATED).body(repositoryProduto.save(produto));
 	}
 	
-	@PutMapping("/id/{id}")
+	@PutMapping
 	public ResponseEntity<ProdutoModelo> updateProduct(@PathVariable Long id, @RequestBody ProdutoModelo produto){
+		produto.setId_produto(id);
 		return ResponseEntity.status(HttpStatus.OK).body(repositoryProduto.save(produto));
 	}
 	

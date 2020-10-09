@@ -1,13 +1,14 @@
 package com.api.projetoIntegrador.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -19,15 +20,13 @@ public class CategoriaModelo implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_categoria")
 	private Long id_categoria;
 
-	@Column(name = "tipo_curso")
 	private String tipo_curso;
 	
-	@ManyToOne
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("categoria")
-	private ProdutoModelo produto;
+	private List<ProdutoModelo> produto;
 
 	public long getId_categoria() {
 		return id_categoria;
@@ -45,11 +44,11 @@ public class CategoriaModelo implements Serializable {
 		this.tipo_curso = tipo_curso;
 	}
 
-	public ProdutoModelo getProduto() {
+	public List<ProdutoModelo> getProduto() {
 		return produto;
 	}
 
-	public void setProduto(ProdutoModelo produto) {
+	public void setProduto(List<ProdutoModelo> produto) {
 		this.produto = produto;
 	}
 
