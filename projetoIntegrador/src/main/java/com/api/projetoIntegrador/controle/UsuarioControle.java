@@ -19,7 +19,7 @@ import com.api.projetoIntegrador.modelo.UsuarioModelo;
 import com.api.projetoIntegrador.repositorio.UsuarioRepositorio;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/usuario")
 public class UsuarioControle {
 
 	@Autowired
@@ -40,7 +40,7 @@ public class UsuarioControle {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repositoryUsuario.save(usuario));
 	}
 
-	@PutMapping
+	@PutMapping("/usuario/{id}")
 	public ResponseEntity<UsuarioModelo> updateUser(@PathVariable Long id, @RequestBody UsuarioModelo usuario) {
 		usuario.setId_usuario(id);
 		return ResponseEntity.status(HttpStatus.OK).body(repositoryUsuario.save(usuario));

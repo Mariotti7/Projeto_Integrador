@@ -1,12 +1,17 @@
 package com.api.projetoIntegrador.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "usuario")
@@ -24,6 +29,10 @@ public class UsuarioModelo implements Serializable {
 	private String senha;
 
 	private Long pontuacao;
+
+	@OneToMany(mappedBy = "cursoCriado", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("cursoCriado")
+	private List<ProdutoModelo> criadorCurso;
 
 	public Long getId_usuario() {
 		return id_usuario;
@@ -65,8 +74,12 @@ public class UsuarioModelo implements Serializable {
 		this.pontuacao = pontuacao;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public List<ProdutoModelo> getCriadorCurso() {
+		return criadorCurso;
+	}
+
+	public void setCriadorCurso(List<ProdutoModelo> criadorCurso) {
+		this.criadorCurso = criadorCurso;
 	}
 
 	@Override

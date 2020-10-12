@@ -19,7 +19,7 @@ import com.api.projetoIntegrador.modelo.ProdutoModelo;
 import com.api.projetoIntegrador.repositorio.ProdutoRepositorio;
 
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping("/produto")
 public class ProdutoControle {
 
 	@Autowired
@@ -40,7 +40,7 @@ public class ProdutoControle {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repositoryProduto.save(produto));
 	}
 	
-	@PutMapping
+	@PutMapping("/produto/{id}")
 	public ResponseEntity<ProdutoModelo> updateProduct(@PathVariable Long id, @RequestBody ProdutoModelo produto){
 		produto.setId_produto(id);
 		return ResponseEntity.status(HttpStatus.OK).body(repositoryProduto.save(produto));

@@ -34,6 +34,10 @@ public class ProdutoModelo implements Serializable {
 	@JsonIgnoreProperties("produto")
 	private CategoriaModelo categoria;
 
+	@ManyToOne
+	@JsonIgnoreProperties("criadorCurso")
+	private UsuarioModelo cursoCriado;
+
 	public Long getId_produto() {
 		return id_produto;
 	}
@@ -89,7 +93,15 @@ public class ProdutoModelo implements Serializable {
 	public void setCategoria(CategoriaModelo categoria) {
 		this.categoria = categoria;
 	}
-	
+
+	public UsuarioModelo getCursoCriado() {
+		return cursoCriado;
+	}
+
+	public void setCursoCriado(UsuarioModelo cursoCriado) {
+		this.cursoCriado = cursoCriado;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

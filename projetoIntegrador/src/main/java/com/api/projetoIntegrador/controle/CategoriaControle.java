@@ -40,7 +40,7 @@ public class CategoriaControle {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repositoryCategoria.save(categoria));
 	}
 
-	@PutMapping
+	@PutMapping("/categoria/{id}")
 	public ResponseEntity<CategoriaModelo> updateCategory(@PathVariable Long id,
 			@RequestBody CategoriaModelo categoria) {
 		categoria.setId_categoria(id);
