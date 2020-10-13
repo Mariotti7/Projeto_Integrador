@@ -1,11 +1,14 @@
 package com.api.projetoIntegrador.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -37,6 +40,14 @@ public class ProdutoModelo implements Serializable {
 	@ManyToOne
 	@JsonIgnoreProperties("criadorCurso")
 	private UsuarioModelo cursoCriado;
+
+	@ManyToMany(mappedBy = "cursoEstudado", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("cursoEstudado")
+	private List<UsuarioModelo> estudante;
+	
+	@ManyToMany(mappedBy = "cursoMonitorado", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("cursoMonitorado")
+	private List<UsuarioModelo> monitor; 
 
 	public Long getId_produto() {
 		return id_produto;
