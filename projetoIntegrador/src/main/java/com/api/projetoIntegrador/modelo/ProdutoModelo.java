@@ -1,14 +1,11 @@
 package com.api.projetoIntegrador.modelo;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -31,8 +28,6 @@ public class ProdutoModelo implements Serializable {
 
 	private Long ganho_aula;
 
-	private Long ganho_prova;
-
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
 	private CategoriaModelo categoria;
@@ -40,14 +35,6 @@ public class ProdutoModelo implements Serializable {
 	@ManyToOne
 	@JsonIgnoreProperties("criadorCurso")
 	private UsuarioModelo cursoCriado;
-
-	@ManyToMany(mappedBy = "cursoEstudado", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("cursoEstudado")
-	private List<UsuarioModelo> estudante;
-	
-	@ManyToMany(mappedBy = "cursoMonitorado", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("cursoMonitorado")
-	private List<UsuarioModelo> monitor; 
 
 	public Long getId_produto() {
 		return id_produto;
@@ -87,14 +74,6 @@ public class ProdutoModelo implements Serializable {
 
 	public void setGanho_aula(Long ganho_aula) {
 		this.ganho_aula = ganho_aula;
-	}
-
-	public Long getGanho_prova() {
-		return ganho_prova;
-	}
-
-	public void setGanho_prova(Long ganho_prova) {
-		this.ganho_prova = ganho_prova;
 	}
 
 	public CategoriaModelo getCategoria() {

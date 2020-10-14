@@ -8,9 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -33,21 +30,11 @@ public class UsuarioModelo implements Serializable {
 
 	private Long pontuacao;
 
+	private String estudante;
+
 	@OneToMany(mappedBy = "cursoCriado", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("cursoCriado")
 	private List<ProdutoModelo> criadorCurso;
-	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("estudante")
-	@JoinTable(name="cursoEstudado", joinColumns = @JoinColumn(name="produto_id_curso"),
-	inverseJoinColumns = @JoinColumn(name="usuario_id_estudante"))
-	private List<UsuarioModelo> cursoEstudado;
-	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("monitor")
-	@JoinTable(name="cursoMonitorado", joinColumns = @JoinColumn(name="produto_id_monitorado"),
-	inverseJoinColumns = @JoinColumn(name="usuario_id_monitor"))
-	private List<ProdutoModelo> cursoMonitorado;
 
 	public Long getId_usuario() {
 		return id_usuario;
@@ -87,6 +74,14 @@ public class UsuarioModelo implements Serializable {
 
 	public void setPontuacao(Long pontuacao) {
 		this.pontuacao = pontuacao;
+	}
+
+	public String getEstudante() {
+		return estudante;
+	}
+
+	public void setEstudante(String estudante) {
+		this.estudante = estudante;
 	}
 
 	public List<ProdutoModelo> getCriadorCurso() {
