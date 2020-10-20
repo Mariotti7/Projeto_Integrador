@@ -1,4 +1,4 @@
-package com.api.projetoIntegrador.service;
+package com.api.projetointegrador.service;
 
 import java.nio.charset.Charset;
 import org.apache.commons.codec.binary.Base64;
@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.api.projetoIntegrador.modelo.UsuarioLogin;
-import com.api.projetoIntegrador.modelo.UsuarioModelo;
-import com.api.projetoIntegrador.repositorio.UsuarioRepositorio;
+import com.api.projetointegrador.modelo.UsuarioLogin;
+import com.api.projetointegrador.modelo.UsuarioModelo;
+import com.api.projetointegrador.repositorio.UsuarioRepositorio;
 
 @Service
 public class UsuarioService {

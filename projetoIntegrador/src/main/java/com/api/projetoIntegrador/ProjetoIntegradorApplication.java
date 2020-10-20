@@ -1,13 +1,13 @@
-package com.api.projetoIntegrador;
+package com.api.projetointegrador;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProjetoIntegradorApplication {
+public class ProjetointegradorApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProjetoIntegradorApplication.class, args);
+		SpringApplication.run(ProjetointegradorApplication.class, args);
 	}
 
 }

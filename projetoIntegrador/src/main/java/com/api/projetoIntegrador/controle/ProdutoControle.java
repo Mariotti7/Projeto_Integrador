@@ -1,4 +1,4 @@
-package com.api.projetoIntegrador.controle;
+package com.api.projetointegrador.controle;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.projetoIntegrador.modelo.ProdutoModelo;
-import com.api.projetoIntegrador.repositorio.ProdutoRepositorio;
+import com.api.projetointegrador.modelo.ProdutoModelo;
+import com.api.projetointegrador.repositorio.ProdutoRepositorio;
 
 @RestController
 @RequestMapping("/produto")

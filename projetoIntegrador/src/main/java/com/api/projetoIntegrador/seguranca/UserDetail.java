@@ -1,4 +1,4 @@
-package com.api.projetoIntegrador.seguranca;
+package com.api.projetointegrador.seguranca;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,7 +6,7 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.api.projetoIntegrador.modelo.UsuarioModelo;
+import com.api.projetointegrador.modelo.UsuarioModelo;
 
 public class UserDetail implements UserDetails {
 	private static final long serialVersionUID = 1L;

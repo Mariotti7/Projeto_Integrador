@@ -1,4 +1,4 @@
-package com.api.projetoIntegrador.modelo;
+package com.api.projetointegrador.modelo;
 
 import java.io.Serializable;
 import java.util.List;
@@ -27,10 +27,6 @@ public class UsuarioModelo implements Serializable {
 	private String email;
 
 	private String senha;
-
-	private Long pontuacao;
-
-	private String estudante;
 
 	@OneToMany(mappedBy = "cursoCriado", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("cursoCriado")
@@ -68,21 +64,6 @@ public class UsuarioModelo implements Serializable {
 		this.senha = senha;
 	}
 
-	public Long getPontuacao() {
-		return pontuacao;
-	}
-
-	public void setPontuacao(Long pontuacao) {
-		this.pontuacao = pontuacao;
-	}
-
-	public String getEstudante() {
-		return estudante;
-	}
-
-	public void setEstudante(String estudante) {
-		this.estudante = estudante;
-	}
 
 	public List<ProdutoModelo> getCriadorCurso() {
 		return criadorCurso;

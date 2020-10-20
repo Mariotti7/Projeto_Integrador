@@ -1,4 +1,4 @@
-package com.api.projetoIntegrador.modelo;
+package com.api.projetointegrador.modelo;
 
 import java.io.Serializable;
 import java.util.List;
