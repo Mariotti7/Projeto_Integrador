@@ -24,10 +24,6 @@ public class ProdutoModelo implements Serializable {
 
 	private String descricao;
 
-	private Long custo_monitoria;
-
-	private Long ganho_aula;
-
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
 	private CategoriaModelo categoria;
@@ -60,21 +56,6 @@ public class ProdutoModelo implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Long getCusto_monitoria() {
-		return custo_monitoria;
-	}
-
-	public void setCusto_monitoria(Long custo_monitoria) {
-		this.custo_monitoria = custo_monitoria;
-	}
-
-	public Long getGanho_aula() {
-		return ganho_aula;
-	}
-
-	public void setGanho_aula(Long ganho_aula) {
-		this.ganho_aula = ganho_aula;
-	}
 
 	public CategoriaModelo getCategoria() {
 		return categoria;
